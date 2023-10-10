@@ -1,0 +1,36 @@
+CREATE TABLE UserTable
+(
+  userId SERIAL PRIMARY KEY,
+  username VARCHAR(20) NOT NULL,
+  password VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE ScoringSystem
+(
+  sportName VARCHAR(25) NOT NULL,
+  winPts INT NOT NULL,
+  drawPts INT NOT NULL,
+  loosePts INT NOT NULL,
+  PRIMARY KEY (sportName)
+);
+
+CREATE TABLE Tournament
+(
+  tournamentId SERIAL PRIMARY KEY,
+  tournamentName VARCHAR(25) NOT NULL,
+  userId INT NOT NULL,
+  sportName VARCHAR(25) NOT NULL,
+  FOREIGN KEY (userId) REFERENCES UserTable(userId),
+  FOREIGN KEY (sportName) REFERENCES ScoringSystem(sportName)
+);
+
+CREATE TABLE Game
+(
+  gameId SERIAL PRIMARY KEY,
+  result CHAR(1),
+  gameTime DATE,
+  team1 VARCHAR(25) NOT NULL,
+  team2 VARCHAR(25) NOT NULL,
+  tournamentId INT NOT NULL,
+  FOREIGN KEY (tournamentId) REFERENCES Tournament(tournamentId)
+);
