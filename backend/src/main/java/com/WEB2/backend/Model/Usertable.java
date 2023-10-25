@@ -13,17 +13,6 @@ public class Usertable {
     @Column(name = "username", nullable = false, length = 20)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 20)
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }
