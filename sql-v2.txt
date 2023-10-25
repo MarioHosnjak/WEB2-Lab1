@@ -34,3 +34,9 @@ CREATE TABLE Game
   tournamentId INT NOT NULL,
   FOREIGN KEY (tournamentId) REFERENCES Tournament(tournamentId)
 );
+
+ALTER TABLE usertable
+DROP COLUMN password;
+
+ALTER TABLE tournament
+ADD COLUMN tournament_hash varchar(10);
