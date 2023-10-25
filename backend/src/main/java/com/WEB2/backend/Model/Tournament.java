@@ -23,8 +23,8 @@ public class Tournament {
     @JoinColumn(name = "sportname", nullable = false)
     private Scoringsystem sportname;
 
-    @Column(name = "tournament_hash", nullable = false, length = 10)
-    private String tournament_hash;
+    @Column(name = "tournamenthash", nullable = false, length = 10)
+    private String tournamenthash;
 
     public Scoringsystem getSportname() {
         return sportname;
@@ -58,11 +58,11 @@ public class Tournament {
         this.id = id;
     }
 
-    public String getTournament_hash() {
-        return tournament_hash;
+    public String getTournamenthash() {
+        return tournamenthash;
     }
 
-    public void setTournament_hash(String tournament_hash) {
-        this.tournament_hash = tournament_hash;
+    public void setTournamenthash(String tournamenthash) {
+        this.tournamenthash = tournamenthash;
     }
 }
