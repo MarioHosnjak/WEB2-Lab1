@@ -12,6 +12,11 @@
     width: 10em;
     border-radius: 10px;
 }
+
+h3 {
+    margin-bottom: 0.5em;
+}
+
 h4 {
     margin-bottom: 0.2em;
     margin-top: 0.2em;
@@ -19,4 +24,23 @@ h4 {
 
 hr {
     border: 2px solid cadetblue;
+    width: 20em;
+}
+
+table {
+    border: 2px solid black;
+    width: 15em;
+}
+
+thead {
+    background-color: cadetblue;
+    border: 2px solid black;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
 }
