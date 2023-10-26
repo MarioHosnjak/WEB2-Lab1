@@ -6,15 +6,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home page</title>
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
 </head>
 <body>
-    <h1>Home page!</h1>
-    <div sec:authorize="!isAuthenticated()">
-        <a href="/profile">Log In</a>
+    <div class="homePg">
+        <h1>Home page!</h1>
     </div>
-    <div sec:authorize="isAuthenticated()">
-        <p>You are logged in!</p>
-        <a th:href="@{/logout}">Log Out</a>
+    <div class="homePg" sec:authorize="!isAuthenticated()">
+        <h3>Log in to create a tournament, or to manage existing ones!</h3>
+        <a href="/profile"><button class="button">Log In</button></a>
+    </div>
+    <div class="homePg" sec:authorize="isAuthenticated()">
+        <h3>Create a new tournament, or manage existing ones on <i>My tournaments</i> page.</h3>
+        <a href="/profile"><button class="button">My tournaments</button></a>
+        <br>
+        <a th:href="@{/logout}"><button class="button">Log Out</button></a>
     </div>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tournament page</title>
+</head>
+<body>
+  <h1>Tournament page</h1>
+  <h2 th:text="${name}"></h2>
+  <h2 th:text="${sport}"></h2>
+</body>
+<script th:inline="javascript">
+    var tournamentId = /*[[${tournamentid}]]*/ 'default';
+    var gameData = null;
+
+    async function fetchAndDisplayGameData() {
+        try {
+            const response = await fetch(`http://localhost:8080/api/games?id=${tournamentId}`);
+
+            if (response.ok) {
+                gameData = await response.json();
+                console.log(gameData); // You can access the game data here
+                // Display the data in an HTML element
+                for (let i = 0; i < gameData.length; i++) {
+                    const list = document.createElement('ul');
+                    for (const key in gameData[i]) {
+                        console.log(gameData[i])
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${key}: ${gameData[i][key]}`;
+                        list.appendChild(listItem);
+                    }
+                    document.body.appendChild(list);
+                    document.body.appendChild(document.createElement('br'));
+                }
+                return gameData;
+                // Rest of your code that depends on gameData
+            } else {
+                throw new Error(`Failed to fetch data: ${response.status} - ${response.statusText}`);
+            }
+        } catch (error) {
+            console.error(error);
+            // You can handle the error here, e.g., show an error message or log it.
+        }
+    }
+
+    // Call the async function
+    gameData = fetchAndDisplayGameData().then(() => {
+        // Code here will run after the data is fetched and processed
+        // and any further processing that depends on gameData
+        console.log('Data fetching and processing completed.');
+    }).catch((error) => {
+        console.error(error);
+    });
+
+</script>
+</html>

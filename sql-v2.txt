@@ -40,3 +40,6 @@ DROP COLUMN password;
 
 ALTER TABLE tournament
 ADD COLUMN tournament_hash varchar(10);
+
+ALTER TABLE scoringsystem
+RENAME COLUMN loosepts TO losepts;
