@@ -5,12 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/tournament.css">
     <title>Tournament page</title>
 </head>
 <body>
-  <h1>Tournament page</h1>
-  <h2 th:text="${name}"></h2>
-  <h2 th:text="${sport}"></h2>
+    <h1 style="color: cadetblue"><strong>Tournament page</strong></h1>
+    <hr>
+    <div class="wrapperDiv">
+        <h1 th:text="${name}"></h1>
+        <h2 th:text="${sport}" style="margin-bottom: 0"></h2>
+    </div>
+    <hr style="width: 20em">
 </body>
 <script th:inline="javascript">
     var tournamentId = /*[[${tournamentid}]]*/ 'default';
@@ -22,19 +27,30 @@
 
             if (response.ok) {
                 gameData = await response.json();
-                console.log(gameData); // You can access the game data here
+                //console.log(gameData); // You can access the game data here
+
                 // Display the data in an HTML element
+                const wrapper = document.createElement('div');
+                wrapper.className = 'wrapperDiv';
                 for (let i = 0; i < gameData.length; i++) {
-                    const list = document.createElement('ul');
-                    for (const key in gameData[i]) {
-                        console.log(gameData[i])
-                        const listItem = document.createElement('li');
-                        listItem.textContent = `${key}: ${gameData[i][key]}`;
-                        list.appendChild(listItem);
-                    }
-                    document.body.appendChild(list);
-                    document.body.appendChild(document.createElement('br'));
+                    const gameDiv = document.createElement('div');
+                    gameDiv.className = 'gameClass';
+                    const gameNo = document.createElement('h3');
+                    gameNo.textContent = 'Game ' + String(i+1);
+                    //gameNo.className = 'gameClass';
+                    const teamsSpan = document.createElement('h4');
+                    teamsSpan.textContent = gameData[i]['team1'] + '  -  ' + gameData[i]['team2'];
+                    //teamsSpan.className = 'gameClass';
+                    const gameRes = document.createElement('h4');
+                    gameRes.textContent = 'Result = ' + (gameData[i]['result'] === '1' ? gameData[i]['team1'] + ' won!' : gameData[i]['result'] === '0' ? 'Draw' : gameData[i]['result'] === '2' ? gameData[i]['team2'] + ' won!' : 'Default');
+                    //gameRes.className = 'gameClass';
+                    gameDiv.appendChild(gameNo);
+                    gameDiv.appendChild(teamsSpan);
+                    gameDiv.appendChild(gameRes);
+                    wrapper.appendChild(gameDiv);
+                    wrapper.appendChild(document.createElement('br'));
                 }
+                document.body.appendChild(wrapper);
                 return gameData;
                 // Rest of your code that depends on gameData
             } else {
