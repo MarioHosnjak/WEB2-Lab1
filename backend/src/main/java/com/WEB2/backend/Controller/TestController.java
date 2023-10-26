@@ -23,8 +23,8 @@ public class TestController {
         return usertableService.listAll();
     }
 
-    @GetMapping("api/games")
-    Iterable<Game> getGames() {
-        return gameRepository.findAll();
-    }
+    //@GetMapping("api/games")
+    //Iterable<Game> getGames() {
+    //    return gameRepository.findAll();
+    //}
 }

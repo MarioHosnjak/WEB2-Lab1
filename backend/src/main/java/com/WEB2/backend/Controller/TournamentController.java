@@ -16,13 +16,14 @@ public class TournamentController {
     private TournamentService tournamentService;
 
     @GetMapping("/tournament")
-
     ModelAndView getTournament(@RequestParam("hash") String hash) {
         ModelAndView model = new ModelAndView("tournament");
         Tournament tournament = tournamentService.getTournamentByHash(hash);
         model.addObject("name", tournament.getTournamentname());
         model.addObject("sport", tournament.getSportname().getId());
-        System.out.print(tournamentService.getTournamentByHash(hash).getTournamentname());
+        model.addObject("tournamentid", tournament.getId().toString());
+        model.addObject("userid", tournament.getUserid().toString());
+        model.addObject("hash", tournament.getTournamenthash());
         //return tournamentService.getTournamentByHash(hash);
         return model;
     }
