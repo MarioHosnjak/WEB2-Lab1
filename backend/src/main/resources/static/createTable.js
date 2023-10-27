@@ -37,7 +37,6 @@ function createTable(gameData, scoringSystem) {
             }
         }
     }
-    console.log(tableDict);
     const sortedTable = Object.entries(tableDict)
         .map(([key, value]) => ( {key, value} ))
         .sort((a, b) => a.value - b.value).reverse();

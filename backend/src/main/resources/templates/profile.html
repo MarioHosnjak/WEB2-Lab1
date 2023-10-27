@@ -7,18 +7,83 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="./styles/profile.css">
   <title>My tournaments</title>
+  <style>
+    p {
+      margin-top: 0.4em;
+      margin-bottom: 0.4em;
+    }
+    h3 {
+      margin-bottom: 0.5em;
+      margin-top: 0.5em;
+    }
+    .tournamentDiv {
+      border: 3px solid cadetblue;
+      width: max-content;
+      border-radius: 15px;
+    }
+    @media (max-width: 425px) {
+      .tournamentDiv {
+        width: auto;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1 style="color: cadetblue"><strong>My tournaments</strong></h1>
   <hr style="width: 97vw;">
-  <a href="/">Back to homepage!</a>
-  <br>
-  <h2>User info:</h2>
+  <h3 id="userInfo"></h3>
+  <p><a href="/">Back to homepage!</a></p>
   <div sec:authorize="isAuthenticated()">
-    <img th:src="${profile.get('picture')}" th:attr="alt=${profile.get('name')}" style="width: 10em;"/>
-    <h2 th:text="${profile.get('name')}"></h2>
-    <p th:text="${profile.get('email')}"></p>
-    <a th:href="@{/logout}">Log Out</a>
+    <p><a th:href="@{/logout}">Log Out</a></p>
   </div>
+  <hr style="width: 33vw;">
+  <br>
 </body>
+<script th:inline="javascript">
+  let username = /*[[${profile.get('name')}]]*/ 'default';
+  let userInfoH3 = document.getElementById('userInfo');
+  userInfoH3.textContent = "User: " + username;
+  fetch('http://localhost:8080/api/gettournaments').then(data => data.json())
+            .then(data => {
+              let appendDiv = document.createElement('div');
+              console.log(data);
+              let heading2 = document.createElement('h2');
+              heading2.textContent = "My tournaments: ";
+              appendDiv.appendChild(heading2);
+              if(data.length == 0) {
+                let noTournamentsH3 = document.createElement('h3');
+                noTournamentsH3.textContent = "You didn't create any tournaments!"
+                appendDiv.appendChild(noTournamentsH3);
+              }
+              for(let i = 0; i < data.length; i++) {
+                let tournamentDiv = document.createElement('div');
+                tournamentDiv.className = "tournamentDiv";
+                let tournamentName = document.createElement('h3');
+                tournamentName.textContent = data[i][2];
+                let sportName = document.createElement('h3');
+                sportName.textContent = data[i][3];
+                let accessLinkH3 = document.createElement('h3');
+                let accessLinkA = document.createElement('a');
+                accessLinkA.textContent = 'http://localhost:8080/tournament?hash=' + data[i][4];
+                accessLinkA.href = '/tournament?hash=' + data[i][4];
+                accessLinkH3.appendChild(accessLinkA);
+                tournamentDiv.appendChild(tournamentName);
+                tournamentDiv.appendChild(sportName);
+                tournamentDiv.appendChild(accessLinkH3);
+                appendDiv.appendChild(tournamentDiv);
+              }
+              let createNewButton = document.createElement('button');
+              createNewButton.textContent = "Create new tournament";
+              createNewButton.style.marginTop = "1em";
+              let createNewA = document.createElement('a');
+              createNewA.href = '/createTournament'
+              createNewA.appendChild(createNewButton);
+              appendDiv.appendChild(createNewA);
+              appendDiv.appendChild(document.createElement('br'));
+              document.body.appendChild(appendDiv);
+            })
+          .catch((error) => {
+    console.log(error.toString());
+  });
+</script>
 </html>
