@@ -1,15 +1,23 @@
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My profile</title>
+  <link rel="stylesheet" type="text/css" href="./styles/profile.css">
+  <title>My tournaments</title>
 </head>
 <body>
-  <h1>My profile page!</h1>
+  <h1 style="color: cadetblue"><strong>My tournaments</strong></h1>
+  <hr style="width: 97vw;">
   <a href="/">Back to homepage!</a>
+  <br>
+  <h2>User info:</h2>
   <div sec:authorize="isAuthenticated()">
+    <img th:src="${profile.get('picture')}" th:attr="alt=${profile.get('name')}" style="width: 10em;"/>
+    <h2 th:text="${profile.get('name')}"></h2>
+    <p th:text="${profile.get('email')}"></p>
     <a th:href="@{/logout}">Log Out</a>
   </div>
 </body>

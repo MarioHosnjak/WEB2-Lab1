@@ -30,7 +30,7 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/").permitAll();
             try {
-                auth.requestMatchers("/profile").authenticated().and().oauth2Login()
+                auth.requestMatchers("/mytournaments").authenticated().and().oauth2Login()
                         .and().logout()
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .addLogoutHandler(logoutHandler);

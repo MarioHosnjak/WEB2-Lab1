@@ -29,8 +29,11 @@ public class HomePageController {
         return modelAndView;
     }*/
 
-    @GetMapping("/profile")
-    public String profile(Model model, @AuthenticationPrincipal OidcUser principal) {
+    @GetMapping("/mytournaments")
+    public String mytournaments(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if (principal != null) {
+            model.addAttribute("profile", principal.getClaims());
+        }
         return "profile";
     }
 }

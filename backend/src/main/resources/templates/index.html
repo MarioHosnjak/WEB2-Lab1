@@ -14,11 +14,11 @@
     </div>
     <div class="homePg" sec:authorize="!isAuthenticated()">
         <h3>Log in to create a tournament, or to manage existing ones!</h3>
-        <a href="/profile"><button class="button">Log In</button></a>
+        <a href="/mytournaments"><button class="button">Log In</button></a>
     </div>
     <div class="homePg" sec:authorize="isAuthenticated()">
         <h3>Create a new tournament, or manage existing ones on <i>My tournaments</i> page.</h3>
-        <a href="/profile"><button class="button">My tournaments</button></a>
+        <a href="/mytournaments"><button class="button">My tournaments</button></a>
         <br>
         <a th:href="@{/logout}"><button class="button">Log Out</button></a>
     </div>
