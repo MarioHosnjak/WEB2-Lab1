@@ -21,11 +21,16 @@
 </body>
 <script th:inline="javascript">
     const tournamentId = /*[[${tournamentid}]]*/ 'default';
+    const sportName = /*[[${sport}]]*/ 'default'
 
     gameData = fetchAndDisplayGameData(tournamentId).then((gameData) => {
         console.log('Game data fetching and processing completed.');
         console.log(gameData)
-        let tableData = createTable(gameData, /*[[${sport}]]*/);
+        fetch(`http://localhost:8080/api/scoringsystem?sport=${sportName}`).then(response => response.json())
+            .then(response => createTable(gameData, [response['winpts'], response['drawpts'], response['losepts']]))
+        .catch((error) => {
+            console.error(error);
+        });
     }).catch((error) => {
         console.error(error);
     });
