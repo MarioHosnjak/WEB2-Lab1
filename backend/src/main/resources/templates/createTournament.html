@@ -25,12 +25,15 @@
     <select id="sport" name="sport">
         <!--Dynamically added-->
     </select>
+
     <br>
     <br>
+
     <label for="teams">Teams(4-8):</label><br>
-    <textarea id="teams" name="teams" rows="8" cols="50" required></textarea><br><br>
+    <textarea id="teams" name="teams" rows="8" cols="50" required placeholder="Teams separated by a comma or a new line"></textarea><br><br>
 
     <input type="submit" value="Submit">
+    <button style="margin-left: 2em" onclick="clearData()">Clear</button>
 </form>
 </body>
 <script>
@@ -53,6 +56,13 @@
             alert("4-8 teams required! Separate them with a comma or write them in a new line.");
             return false;
         }
+    }
+
+    function clearData(){
+        let nameTextArea = document.getElementById('name');
+        nameTextArea.value = '';
+        let teamTextArea = document.getElementById('teams');
+        teamTextArea.value = '';
     }
     fetch('http://localhost:8080/api/allscoringsystems').then(response => response.json()).then(data => {
         console.log(data);
