@@ -39,4 +39,10 @@ public class TournamentController {
         String username = userDetails.getFullName();
         return tournamentService.getTournamentByUsername(username);
     }
+
+    @GetMapping("/createTournament")
+    ModelAndView createTournament() {
+        ModelAndView model = new ModelAndView("createTournament");
+        return model;
+    }
 }

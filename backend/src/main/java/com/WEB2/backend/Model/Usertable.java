@@ -10,7 +10,7 @@ public class Usertable {
     @Column(name = "userid", nullable = false)
     private Integer id;
 
-    @Column(name = "username", nullable = false, length = 20)
+    @Column(name = "username", nullable = false, length = 60, unique = true)
     private String username;
 
     public String getUsername() {

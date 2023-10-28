@@ -13,13 +13,13 @@ public class Scoringsystem {
     private String id;
 
     @Column(name = "winpts", nullable = false)
-    private Integer winpts;
+    private Float winpts;
 
     @Column(name = "drawpts", nullable = false)
-    private Integer drawpts;
+    private Float drawpts;
 
     @Column(name = "losepts", nullable = false)
-    private Integer losepts;
+    private Float losepts;
 
     public String getId() {
         return id;
@@ -29,25 +29,25 @@ public class Scoringsystem {
         this.id = id;
     }
 
-    public Integer getWinpts() {
+    public Float getWinpts() {
         return winpts;
     }
 
-    public void setWinpts(Integer winpts) {
+    public void setWinpts(Float winpts) {
         this.winpts = winpts;
     }
 
-    public Integer getDrawpts() {
+    public Float getDrawpts() {
         return drawpts;
     }
 
-    public void setDrawpts(Integer drawpts) {
+    public void setDrawpts(Float drawpts) {
         this.drawpts = drawpts;
     }
 
-    public Integer getLosepts() {
+    public Float getLosepts() {
         return losepts;
     }
 
-    public void setLosepts(Integer losepts) { this.losepts = losepts; }
+    public void setLosepts(Integer Float) { this.losepts = losepts; }
 }
