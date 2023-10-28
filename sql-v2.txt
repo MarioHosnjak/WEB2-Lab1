@@ -58,3 +58,6 @@ ALTER COLUMN drawpts SET DATA TYPE float;
 
 ALTER TABLE scoringsystem
 ALTER COLUMN losepts SET DATA TYPE float;
+
+ALTER TABLE tournament
+ALTER COLUMN tournamentname TYPE VARCHAR(60);

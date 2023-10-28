@@ -12,7 +12,7 @@ public class Tournament {
     @Column(name = "tournamentid", nullable = false)
     private Integer id;
 
-    @Column(name = "tournamentname", nullable = false, length = 25)
+    @Column(name = "tournamentname", nullable = false, length = 60)
     private String tournamentname;
 
     @ManyToOne(optional = false)
