@@ -23,7 +23,7 @@ public class Tournament {
     @JoinColumn(name = "sportname", nullable = false)
     private Scoringsystem sportname;
 
-    @Column(name = "tournamenthash", nullable = false, length = 10)
+    @Column(name = "tournamenthash", length = 10)
     private String tournamenthash;
 
     public Scoringsystem getSportname() {

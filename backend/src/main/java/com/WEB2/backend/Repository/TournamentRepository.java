@@ -12,4 +12,5 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     @Query(value = "SELECT * FROM tournament natural join usertable WHERE tournament.userid = usertable.userid AND usertable.username = :username", nativeQuery=true)
     List<Object[]> findByUsername(@Param("username") String username);
+
 }

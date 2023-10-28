@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface UsertableRepository extends CrudRepository<Usertable, Integer> {
 
+    Usertable findByUsername(String username);
+
 }

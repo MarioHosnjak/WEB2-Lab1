@@ -21,4 +21,8 @@ public class TournamentService {
     public List<Object[]> getTournamentByUsername(String username){
         return tournamentRepository.findByUsername(username);
     }
+
+    public Tournament addNewTournament(Tournament tournament){
+        return tournamentRepository.save(tournament);
+    }
 }

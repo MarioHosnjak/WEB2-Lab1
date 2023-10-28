@@ -27,6 +27,7 @@ public class SecurityConfig {
             auth.requestMatchers("/home").permitAll();
             auth.requestMatchers("/profile").authenticated();
         }).build();*/
+        http.cors().and().csrf().disable();
         return http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/").permitAll();
             try {
