@@ -15,20 +15,6 @@ public class HomePageController {
         return "index";
     }
 
-   /* @GetMapping("/home")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index.html");
-        return modelAndView;
-    }*/
-
-    /*@GetMapping("/profile")
-    public ModelAndView profile() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("profile.html");
-        return modelAndView;
-    }*/
-
     @GetMapping("/mytournaments")
     public String mytournaments(Model model, @AuthenticationPrincipal OidcUser principal) {
         if (principal != null) {

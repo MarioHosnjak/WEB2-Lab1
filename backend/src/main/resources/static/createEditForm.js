@@ -1,6 +1,4 @@
 function createEditForm() {
-    console.log("Create form!!!");
-    console.log(event.target.getAttribute("data"));
     let i = event.target.getAttribute("data");
     event.target.style.display = "none";
 

@@ -110,9 +110,6 @@ public class TournamentController {
         GameGenerator generator = new GameGenerator(teams, createdTournament2);
 
         Game[] games = generator.getGames();
-        System.out.println(games[0].getTeam1());
-        System.out.println(games[0].getTeam2());
-        System.out.println(games.length);
 
         gameService.addGames(games);
 

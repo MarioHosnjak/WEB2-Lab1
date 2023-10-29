@@ -27,10 +27,6 @@ public class GameService {
 
     public void addGames(Game[] games) {
         for(int i = 0; i < games.length; i++){
-            System.out.println(i);
-            System.out.println(games[i].getTeam1());
-            System.out.println(games[i].getTeam2());
-            System.out.println(games[i].getId());
             gameRepository.save(games[i]);
         }
         return;

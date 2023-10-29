@@ -40,7 +40,6 @@
 </body>
 <script>
     function validateForm() {
-        console.log("validate form");
         let teamsTxt = document.forms["createNewForm"]["teams"].value;
         let teamsArray = teamsTxt.replace(/\r?\n/g, ",").split(",");
         let newTeamsArray = [];

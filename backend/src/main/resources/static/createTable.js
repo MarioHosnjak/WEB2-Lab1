@@ -1,5 +1,4 @@
 function createTable(gameData, scoringSystem) {
-    //console.log("Hello from createTable.js!");
     let tableDict = {}
     for (let i = 0; i < gameData.length; i++) {
         if (gameData[i]['result'] === '1') {
