@@ -1,8 +1,11 @@
 package com.WEB2.backend.Controller;
 
+import com.WEB2.backend.GameGenerator;
+import com.WEB2.backend.Model.Game;
 import com.WEB2.backend.Model.Scoringsystem;
 import com.WEB2.backend.Model.Tournament;
 import com.WEB2.backend.Model.Usertable;
+import com.WEB2.backend.Service.GameService;
 import com.WEB2.backend.Service.ScoringsystemService;
 import com.WEB2.backend.Service.TournamentService;
 import com.WEB2.backend.Service.UsertableService;
@@ -33,16 +36,30 @@ public class TournamentController {
     @Autowired
     private ScoringsystemService scoringsystemService;
 
+    @Autowired
+    private GameService gameService;
+
     @GetMapping("/tournament")
-    ModelAndView getTournament(@RequestParam("hash") String hash) {
+    ModelAndView getTournament(@RequestParam("hash") String hash, Authentication authentication) {
+
         ModelAndView model = new ModelAndView("tournament");
         Tournament tournament = tournamentService.getTournamentByHash(hash);
+        model.addObject("tournamentClass", tournament);
         model.addObject("name", tournament.getTournamentname());
         model.addObject("sport", tournament.getSportname().getId());
-        model.addObject("tournamentid", tournament.getId().toString());
-        model.addObject("userid", tournament.getUserid().toString());
-        model.addObject("hash", tournament.getTournamenthash());
+
+        if (authentication == null) {
+            model.addObject("authenticated", false);
+        } else {
+            DefaultOidcUser userDetails = (DefaultOidcUser) authentication.getPrincipal();
+            String username = userDetails.getFullName();
+            model.addObject("authenticated", tournament.getUserid().getUsername().equals(username));
+        }
+        //model.addObject("tournamentid", tournament.getId().toString());
+        //model.addObject("userid", tournament.getUserid().toString());
+        //model.addObject("hash", tournament.getTournamenthash());
         //return tournamentService.getTournamentByHash(hash);
+
         return model;
     }
 
@@ -88,6 +105,16 @@ public class TournamentController {
         String hash = HashingUtil.hashTo10Chars(createdTournament.getId().toString());
         createdTournament.setTournamenthash(hash);
         Tournament createdTournament2 = tournamentService.addNewTournament(createdTournament);
+
+        // Generate games
+        GameGenerator generator = new GameGenerator(teams, createdTournament2);
+
+        Game[] games = generator.getGames();
+        System.out.println(games[0].getTeam1());
+        System.out.println(games[0].getTeam2());
+        System.out.println(games.length);
+
+        gameService.addGames(games);
 
         return new RedirectView("/mytournaments");
     }

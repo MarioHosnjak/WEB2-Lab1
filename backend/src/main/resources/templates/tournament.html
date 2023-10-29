@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/tournament.css">
     <script src="fetchFunctions.js"></script>
     <script src="createTable.js"></script>
+    <script src="createEditForm.js"></script>
     <title>Tournament page</title>
 </head>
 <body>
@@ -20,10 +21,17 @@
     <hr>
 </body>
 <script th:inline="javascript">
-    const tournamentId = /*[[${tournamentid}]]*/ 'default';
-    const sportName = /*[[${sport}]]*/ 'default'
+    const tournamentClass = /*[[${tournamentClass}]]*/ 'default';
+    const tournamentId = tournamentClass["id"];
+    const sportName = tournamentClass["sportname"]["id"];
 
-    gameData = fetchAndDisplayGameData(tournamentId).then((gameData) => {
+    const authenticated = /*[[${authenticated}]]*/
+
+    console.log(tournamentClass);
+
+    console.log("Authenticated? " + authenticated);
+
+    gameData = fetchAndDisplayGameData(tournamentId, authenticated).then((gameData) => {
         console.log('Game data fetching and processing completed.');
         console.log(gameData)
         fetch(`http://localhost:8080/api/scoringsystem?sport=${sportName}`).then(response => response.json())

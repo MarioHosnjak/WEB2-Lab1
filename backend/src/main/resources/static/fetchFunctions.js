@@ -1,4 +1,4 @@
-async function fetchAndDisplayGameData(tournamentId) {
+async function fetchAndDisplayGameData(tournamentId, authenticated) {
     try {
         const response = await fetch(`http://localhost:8080/api/games?id=${tournamentId}`);
 
@@ -11,6 +11,7 @@ async function fetchAndDisplayGameData(tournamentId) {
             for (let i = 0; i < gameData.length; i++) {
                 const gameDiv = document.createElement('div');
                 gameDiv.className = 'gameClass';
+                gameDiv.id = i.toString();
                 const gameNo = document.createElement('h3');
                 gameNo.textContent = 'Game ' + String(i+1);
                 const hr = document.createElement('hr')
@@ -25,6 +26,19 @@ async function fetchAndDisplayGameData(tournamentId) {
                 gameDiv.appendChild(hr);
                 gameDiv.appendChild(teamsSpan);
                 gameDiv.appendChild(gameRes);
+                if (authenticated) {
+                    const editButton = document.createElement('button');
+                    editButton.className = 'editButton';
+                    editButton.textContent = "Edit";
+                    editButton.value = i.toString();
+                    editButton.setAttribute("data", i);
+                    /*editButton.addEventListener("click", function() {
+                        window.location.href = "http://localhost:8080/editGameResult?" + "gameid=" + gameData[i]['id'] + "&team1=" +
+                            gameData[i]['team1'] + "&team2=" + gameData[i]['team2'] + "&res=" + gameData[i]['result'];
+                    });*/
+                    editButton.addEventListener("click", createEditForm);
+                    gameDiv.appendChild(editButton);
+                }
                 wrapper.appendChild(gameDiv);
                 wrapper.appendChild(document.createElement('br'));
             }
