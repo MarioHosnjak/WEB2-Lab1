@@ -7,6 +7,9 @@ import com.WEB2.backend.Service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Optional;
 
 @RestController
 public class GameController {
@@ -21,7 +24,7 @@ public class GameController {
     }
 
     @PostMapping("/api/editGameResult")
-    String editGameResult(@RequestParam("newRes") Integer newRes, @RequestParam("gameId") Integer gameId) {
+    RedirectView editGameResult(@RequestParam("newRes") String newRes, @RequestParam("gameId") Integer gameId) {
 
         System.out.println(newRes);
         System.out.println(gameId);
@@ -32,12 +35,17 @@ public class GameController {
         // sejvati game
         // vratiti redirect na /tournament hash
 
+        Optional<Game> gameOpt = gameService.getGameById(gameId);
+        if (!gameOpt.isPresent()){
+            System.out.println("ERROR!");
+            return new RedirectView("/mytournaments");
+        }
+        Game game = gameOpt.get();
+        game.setResult(newRes);
 
-        //System.out.println(gameModel.getId());
-        //System.out.println(gameModel.getTeam1());
-        //System.out.println(gameModel.getTeam2());
+        Game newGame = gameService.editGame(game);
+        String hash = newGame.getTournamentid().getTournamenthash();
 
-
-        return "model";
+        return new RedirectView("/tournament?hash=" + hash);
     }
 }

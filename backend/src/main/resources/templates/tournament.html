@@ -27,10 +27,6 @@
 
     const authenticated = /*[[${authenticated}]]*/
 
-    console.log(tournamentClass);
-
-    console.log("Authenticated? " + authenticated);
-
     gameData = fetchAndDisplayGameData(tournamentId, authenticated).then((gameData) => {
         console.log('Game data fetching and processing completed.');
         console.log(gameData)

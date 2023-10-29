@@ -5,6 +5,8 @@ import com.WEB2.backend.Repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class GameService {
 
@@ -12,7 +14,15 @@ public class GameService {
     private GameRepository gameRepository;
 
     public Iterable<Game> getGamesByTournamentId(Integer id){
-        return gameRepository.findByTournamentidId(id);
+        return gameRepository.findByTournamentidIdOrderById(id);
+    }
+
+    public Optional<Game> getGameById(Integer id){
+        return gameRepository.findById(id);
+    }
+
+    public Game editGame(Game game){
+        return gameRepository.save(game);
     }
 
     public void addGames(Game[] games) {

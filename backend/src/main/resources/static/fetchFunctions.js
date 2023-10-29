@@ -21,7 +21,7 @@ async function fetchAndDisplayGameData(tournamentId, authenticated) {
                 const teamsSpan = document.createElement('h4');
                 teamsSpan.textContent = gameData[i]['team1'] + '  -  ' + gameData[i]['team2'];
                 const gameRes = document.createElement('h4');
-                gameRes.textContent = 'Result = ' + (gameData[i]['result'] === '1' ? gameData[i]['team1'] + ' won!' : gameData[i]['result'] === '0' ? 'Draw' : gameData[i]['result'] === '2' ? gameData[i]['team2'] + ' won!' : 'Default');
+                gameRes.textContent = 'Result = ' + (gameData[i]['result'] === '1' ? gameData[i]['team1'] + ' won!' : gameData[i]['result'] === '0' ? 'Draw' : gameData[i]['result'] === '2' ? gameData[i]['team2'] + ' won!' : '');
                 gameDiv.appendChild(gameNo);
                 gameDiv.appendChild(hr);
                 gameDiv.appendChild(teamsSpan);
