@@ -21,19 +21,3 @@ h3 {
         width: auto;
     }
 }
-
-.back-button-container {
-    position: fixed;
-    top: 10px; /* Adjust the top value to change the vertical position */
-    right: 10px; /* Adjust the right value to change the horizontal position */
-    z-index: 999; /* Ensure it's above other content */
-}
-
-.back-button {
-    background-color: cadetblue; /* Change the background color */
-    color: black; /* Change the text color */
-    border: none;
-    padding: 10px 20px; /* Adjust the padding to change the button size */
-    cursor: pointer;
-    width: 15em;
-}
