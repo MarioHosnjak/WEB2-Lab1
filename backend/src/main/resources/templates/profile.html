@@ -46,6 +46,9 @@
                 let accessLinkA = document.createElement('a');
                 accessLinkA.textContent = 'https://web2-project1-086h.onrender.com/tournament?hash=' + data[i][4];
                 accessLinkA.href = '/tournament?hash=' + data[i][4];
+                tournamentDiv.addEventListener("click", function() {
+                  window.location.href = 'https://web2-project1-086h.onrender.com/tournament?hash=' + data[i][4];
+                });
                 accessLinkH3.appendChild(accessLinkA);
                 tournamentDiv.appendChild(tournamentName);
                 tournamentDiv.appendChild(sportName);
