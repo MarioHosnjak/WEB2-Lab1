@@ -61,3 +61,6 @@ ALTER COLUMN losepts SET DATA TYPE float;
 
 ALTER TABLE tournament
 ALTER COLUMN tournamentname TYPE VARCHAR(60);
+
+ALTER TABLE tournament
+RENAME COLUMN tournament_hash TO tournamenthash;
