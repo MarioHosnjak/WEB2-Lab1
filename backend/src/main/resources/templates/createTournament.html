@@ -16,7 +16,7 @@
 <body>
 <h1 style="color: cadetblue"><strong>New tournament</strong></h1>
 <hr style="width: 97vw;">
-<form name="createNewForm" action="http://localhost:8080/api/createTournament" onsubmit="return validateForm()" method="post">
+<form name="createNewForm" action="https://web2-project1-086h.onrender.com/api/createTournament" onsubmit="return validateForm()" method="post">
     <label for="name">Tournament name:</label>
     <input type="text" id="name" name="name" required><br><br>
 
@@ -65,7 +65,7 @@
         let teamTextArea = document.getElementById('teams');
         teamTextArea.value = '';
     }
-    fetch('http://localhost:8080/api/allscoringsystems').then(response => response.json()).then(data => {
+    fetch('https://web2-project1-086h.onrender.com/api/allscoringsystems').then(response => response.json()).then(data => {
         console.log(data);
         let selectElement = document.getElementById('sport');
         for(let i = 0; i < data.length; i++) {

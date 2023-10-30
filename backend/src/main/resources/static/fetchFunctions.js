@@ -1,6 +1,6 @@
 async function fetchAndDisplayGameData(tournamentId, authenticated) {
     try {
-        const response = await fetch(`http://localhost:8080/api/games?id=${tournamentId}`);
+        const response = await fetch(`https://web2-project1-086h.onrender.com/api/games?id=${tournamentId}`);
 
         if (response.ok) {
             gameData = await response.json();
@@ -32,10 +32,6 @@ async function fetchAndDisplayGameData(tournamentId, authenticated) {
                     editButton.textContent = "Edit";
                     editButton.value = i.toString();
                     editButton.setAttribute("data", i);
-                    /*editButton.addEventListener("click", function() {
-                        window.location.href = "http://localhost:8080/editGameResult?" + "gameid=" + gameData[i]['id'] + "&team1=" +
-                            gameData[i]['team1'] + "&team2=" + gameData[i]['team2'] + "&res=" + gameData[i]['result'];
-                    });*/
                     editButton.addEventListener("click", createEditForm);
                     gameDiv.appendChild(editButton);
                 }

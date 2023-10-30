@@ -30,7 +30,7 @@
     gameData = fetchAndDisplayGameData(tournamentId, authenticated).then((gameData) => {
         console.log('Game data fetching and processing completed.');
         console.log(gameData)
-        fetch(`http://localhost:8080/api/scoringsystem?sport=${sportName}`).then(response => response.json())
+        fetch(`https://web2-project1-086h.onrender.com/api/scoringsystem?sport=${sportName}`).then(response => response.json())
             .then(response => createTable(gameData, [response['winpts'], response['drawpts'], response['losepts']]))
         .catch((error) => {
             console.error(error);

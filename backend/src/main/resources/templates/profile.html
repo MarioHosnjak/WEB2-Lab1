@@ -23,7 +23,7 @@
   let username = /*[[${profile.get('name')}]]*/ 'default';
   let userInfoH3 = document.getElementById('userInfo');
   userInfoH3.textContent = "User: " + username;
-  fetch('http://localhost:8080/api/gettournaments').then(data => data.json())
+  fetch('https://web2-project1-086h.onrender.com/api/gettournaments').then(data => data.json())
             .then(data => {
               let appendDiv = document.createElement('div');
               console.log(data);
@@ -44,7 +44,7 @@
                 sportName.textContent = data[i][3];
                 let accessLinkH3 = document.createElement('h3');
                 let accessLinkA = document.createElement('a');
-                accessLinkA.textContent = 'http://localhost:8080/tournament?hash=' + data[i][4];
+                accessLinkA.textContent = 'https://web2-project1-086h.onrender.com/tournament?hash=' + data[i][4];
                 accessLinkA.href = '/tournament?hash=' + data[i][4];
                 accessLinkH3.appendChild(accessLinkA);
                 tournamentDiv.appendChild(tournamentName);

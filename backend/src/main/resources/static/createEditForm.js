@@ -7,7 +7,7 @@ function createEditForm() {
     // Create a form element
     var form = document.createElement('form');
     form.method = 'post'; // Set the form method to POST
-    form.action = 'http://localhost:8080/api/editGameResult'
+    form.action = 'https://web2-project1-086h.onrender.com/api/editGameResult'
 
 // Create a div element
     var div = document.createElement('div');
