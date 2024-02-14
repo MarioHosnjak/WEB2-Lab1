@@ -35,3 +35,5 @@
 ![Tournament info](https://raw.githubusercontent.com/MarioHosnjak/WEB2-Lab1/main/screenshots/tournament-page-1.PNG "Tournament info")
 
 ![Tournament info](https://raw.githubusercontent.com/MarioHosnjak/WEB2-Lab1/main/screenshots/tournament-page-2.PNG "Tournament info")
+
+All results can be edited, leaderboard is dinamically changed.
